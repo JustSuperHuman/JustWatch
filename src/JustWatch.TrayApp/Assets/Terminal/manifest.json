@@ -1,0 +1,44 @@
+[
+  {
+    "file": "xterm.css",
+    "package": "xterm",
+    "version": "5.3.0",
+    "sha256": "832f3f2c603b43ad4351ff04970150cc7a873014276db126a6065c6dd81e4872"
+  },
+  {
+    "file": "xterm.js",
+    "package": "xterm",
+    "version": "5.3.0",
+    "sha256": "f0aea0f75f48559013ae6643c2479dd737d26da42d5524e6d2b70915ae6523c7"
+  },
+  {
+    "file": "xterm.LICENSE",
+    "package": "xterm",
+    "version": "5.3.0",
+    "sha256": "b569f629d00f2626a8100df2a1798210535621e42164dfd426a6fe5aac7b0ccd"
+  },
+  {
+    "file": "xterm-addon-fit.js",
+    "package": "xterm-addon-fit",
+    "version": "0.8.0",
+    "sha256": "10f3194c5f17c1786fb7d5db865c1ec8539b6736a318063fd38bdaaf7c46848f"
+  },
+  {
+    "file": "xterm-addon-fit.LICENSE",
+    "package": "xterm-addon-fit",
+    "version": "0.8.0",
+    "sha256": "e256f01188af527e4d06d21d06fbf785ae9c50d4b328bf03cbe0ba7f0aa4228f"
+  },
+  {
+    "file": "xterm-addon-web-links.js",
+    "package": "xterm-addon-web-links",
+    "version": "0.9.0",
+    "sha256": "d67624ab0e89e1d2ee27b64cc6e9283f4ce206d7343429d87d95370b0c971824"
+  },
+  {
+    "file": "xterm-addon-web-links.LICENSE",
+    "package": "xterm-addon-web-links",
+    "version": "0.9.0",
+    "sha256": "689ceb10716bd7a87a804c14951d7c2b818cbd60aab83d540902470ce3b13444"
+  }
+]

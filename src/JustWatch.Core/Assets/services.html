@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Services · JustWatch</title>
+<style>/* SERVICE_STYLES */</style></head><body class="ws-page services-page">
+<div class="ws-shell"><!-- WORKSPACE_NAV --><main class="ws-main" id="workspace-main" tabindex="-1">
+<div class="ws-topbar"><div class="ws-breadcrumb">Workspace <span>/</span> Settings &amp; tray</div><div class="ws-connection"><span class="live-dot"></span><span id="connection">Connecting…</span></div></div>
+<div class="ws-content">
+<header class="ws-intro"><div><div class="ws-eyebrow" id="workspaceName">JUSTWATCH</div><h1>Workspace settings</h1><p>Manage your services and choose what stays in your tray.</p></div><button class="primary" id="add">+ Add service</button></header>
+<section class="overview" aria-label="Service overview"><div><strong id="totalCount">—</strong><span>Total services</span></div><div><strong id="runningCount">—</strong><span>Running now</span></div><div><strong id="pinnedCount">—</strong><span>Always in tray</span></div><div class="preview-block"><span>YOUR TRAY ICON</span><div class="preview" id="preview" aria-label="Tray indicator preview"></div></div></section>
+<div class="section-intro"><div><h2>Services & tray</h2><p>Hidden services keep running. You can always manage them here.</p></div><span class="muted" id="count"></span></div>
+<div class="toolbar"><label class="search-label"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search services or projects…" aria-label="Search services"></label><select id="filter" aria-label="Filter services"><option value="all">All services</option><option value="running">Running</option><option value="pinned">Always in tray</option><option value="hidden">Hidden from tray</option></select></div>
+<div id="message" role="status" aria-live="polite"></div><div id="list"></div>
+<footer class="page-footer"><span id="projectPath"></span><span>Live status · updates every 4 seconds</span></footer>
+<div class="save-bar"><div><strong id="saveState">All changes saved</strong><span id="saveHint">Tray preferences apply without restarting services.</span></div><div class="actions"><button id="reload">Reload</button><button class="primary" id="save" disabled>Save changes</button></div></div>
+</div></main></div>
+<dialog id="editor" aria-labelledby="editorTitle"><form id="form"><h2 id="editorTitle">Edit service</h2><div class="grid">
+<label>Service ID<input id="id" required pattern="[a-z][a-z0-9-]{0,63}" maxlength="64" placeholder="my-api"></label>
+<label>Display name<input id="name" required placeholder="My API"></label>
+<label class="wide">Description<input id="description" placeholder="What this service does"></label>
+<label>Project<input id="project" maxlength="80" list="projects" placeholder="JustGains, CPF Loans…"><datalist id="projects"></datalist></label>
+<label>Group (optional)<input id="group" placeholder="Core, Nutrition, Tools…"></label>
+<label>Port<input id="port" type="number" min="1" max="65535" placeholder="Optional"></label>
+<label>Command<input id="command" required placeholder="bun"></label>
+<label>Arguments (JSON array)<input id="args" value='["run", "dev"]'></label>
+<label class="wide">Working directory<input id="workingDirectory" placeholder="Empty uses the project directory; relative paths are supported"></label>
+<label class="wide">Open URL<input id="url" type="url" placeholder="Optional; defaults to http://localhost:port"></label>
+<div class="wide checks"><label><input type="checkbox" id="autoStart">Auto-start</label><label>Tray visibility<select id="trayMode"><option value="always">Always</option><option value="running">While running</option><option value="hidden">Hidden</option></select></label><label><input type="checkbox" id="showTrayDot">Tray icon dot</label><label>Color <input type="color" id="trayColor" value="#34a853"></label></div></div>
+<p class="muted">Apply to draft, then Save changes. Editing a running command restarts that service; tray preferences do not.</p><details><summary>Advanced · recovery, environment and stop command</summary><div class="grid">
+<div class="wide checks"><label><input type="checkbox" id="autoRestart">Auto-restart on crash</label><label><input type="checkbox" id="agentRecovery">Agent recovery</label><label><input type="checkbox" id="reclaimPort">Reclaim occupied port</label><label><input type="checkbox" id="reloadAndroidOnRestart">Reload Android after restart</label></div>
+<label>Crash threshold<input type="number" id="crashThreshold" min="1"></label><label>Crash window (seconds)<input type="number" id="crashWindowSeconds" min="1"></label>
+<label class="wide">Restart output patterns (JSON array)<textarea id="restartOutputPatterns" rows="2"></textarea></label>
+<label class="wide">Environment (JSON object)<textarea id="environment" rows="4" spellcheck="false"></textarea></label>
+<label>Stop command<input id="stopCommand" placeholder="Optional; used for containers and external resources"></label><label>Stop arguments (JSON array)<input id="stopArgs" value="[]"></label>
+</div></details><p id="editorError" role="alert"></p><div class="actions"><button type="button" id="cancel">Cancel</button><button class="primary" type="submit">Apply to draft</button></div></form></dialog>
+<dialog id="logDialog" aria-labelledby="logTitle"><h2 id="logTitle">Logs</h2><pre id="logs"></pre><button id="closeLogs">Close</button></dialog>
+<script>/* SERVICE_SCRIPT */</script></body></html>

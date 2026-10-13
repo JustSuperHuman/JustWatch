@@ -1,0 +1,12 @@
+{
+  "name": "justwatch",
+  "private": true,
+  "scripts": {
+    "update": "bun scripts/update.ts",
+    "tg": "bun scripts/telegram.ts",
+    "start": "bun scripts/start.ts",
+    "stop": "bun scripts/stop.ts",
+    "uninstall-startup": "powershell -ExecutionPolicy Bypass -File scripts/uninstall-startup.ps1",
+    "uninstall-service": "powershell -ExecutionPolicy Bypass -File scripts/uninstall-service.ps1"
+  }
+}

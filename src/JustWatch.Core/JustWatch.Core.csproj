@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets/justwatch.svg" />
+    <EmbeddedResource Include="Assets/workspace.css" />
+    <EmbeddedResource Include="Assets/agent.html" />
+    <EmbeddedResource Include="Assets/agent.css" />
+    <EmbeddedResource Include="Assets/agent.js" />
+    <EmbeddedResource Include="Assets/services.html" />
+    <EmbeddedResource Include="Assets/services.css" />
+    <EmbeddedResource Include="Assets/services.js" />
+    <EmbeddedResource Include="Assets/projects.html" />
+    <EmbeddedResource Include="Assets/projects.css" />
+    <EmbeddedResource Include="Assets/projects.js" />
+    <!-- Agent docs, served at /llms.txt and /skill. -->
+    <EmbeddedResource Include="../../llms.txt" LogicalName="JustWatch.Core.Assets.llms.txt" />
+    <EmbeddedResource Include="../../skills/justwatch/SKILL.md" LogicalName="JustWatch.Core.Assets.SKILL.md" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Minio" Version="6.0.5" />
+  </ItemGroup>
+</Project>

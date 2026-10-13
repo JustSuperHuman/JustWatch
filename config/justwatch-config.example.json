@@ -1,0 +1,99 @@
+{
+  // JustWatch configuration — copy to justwatch-config.json and edit.
+  // Installed copies read %APPDATA%\JustWatch\justwatch-config.json instead.
+  // Everything except "processes" is optional; omitted sections use defaults.
+
+  "projectName": "My workspace",
+  // Default working directory for services that don't set their own.
+  "projectPath": "C:\code\my-app",
+  // Folders the Project Library scans for projects (package.json, .sln, ...).
+  "watchFolders": ["C:\code"],
+
+  // Every service with a "port" gets a pre-flight check on start: anything already
+  // listening there is stopped first. Set "reclaimPort": false to fail instead.
+  "processes": [
+    {
+      "id": "api",
+      "name": "API",
+      "project": "My app",
+      "command": "bun",
+      "args": ["run", "dev"],
+      "workingDirectory": "C:\code\my-app\api",
+      "port": 5000,
+      "autoStart": true,
+      "autoRestart": true,
+      "showInTray": true,
+      "showTrayDot": true,
+      "trayColor": "#34A853",
+      "restartOutputPatterns": ["EADDRINUSE"]
+    },
+    {
+      "id": "web",
+      "name": "Web",
+      "project": "My app",
+      "command": "npm",
+      "args": ["run", "dev"],
+      "workingDirectory": "C:\code\my-app\web",
+      "port": 3000,
+      "autoStart": true,
+      "autoRestart": true,
+      "showInTray": true,
+      "showTrayDot": true,
+      "trayColor": "#4285F4"
+    }
+  ],
+
+  "web": {
+    // Browser UI + control API at http://localhost:6767/
+    "enabled": true,
+    "port": 6767,
+    // "localhost" = this machine only. "+" = all interfaces (may need an admin URL ACL).
+    "host": "localhost"
+  },
+
+  "notifications": {
+    "enabled": true,
+    "trayBalloons": true,
+    "processStatus": true,
+    "taskStatus": true
+  },
+
+  "updates": {
+    // Check GitHub releases on launch and every 6 hours.
+    "checkAutomatically": true,
+    "repository": "JustSuperHuman/JustWatch"
+  },
+
+  // Optional: Telegram status updates (POST /api/telegram/messages). See docs/telegram.md.
+  "telegram": {
+    "enabled": false,
+    "botToken": "",
+    "chatId": 0,
+    "defaultGroup": "me",
+    "groups": [
+      { "id": "me", "name": "Me (DM)", "chatId": "123456789" }
+    ]
+  },
+
+  // Optional: AI agent chat. "openrouter" calls OpenRouter directly; "claude" spawns the Claude CLI.
+  "chat": {
+    "mode": "claude",
+    "openRouterApiKey": "",
+    "openRouterModel": "anthropic/claude-sonnet-4",
+    "claudeCommand": "claude",
+    "claudeModel": "opus",
+    "claudeTestModel": "sonnet"
+  },
+
+  // Optional: MuMu Player Android emulators. See docs/mumu.md.
+  "android": {
+    "enabled": false
+  },
+
+  // Optional: "Commands" menu — scans these roots for package.json scripts.
+  "commands": {
+    "enabled": false,
+    "roots": [],
+    "maxDepth": 3
+  }
+}

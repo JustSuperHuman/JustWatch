@@ -1,0 +1,73 @@
+# ---- Local configuration (contains API keys, bot tokens, personal paths) ----
+config/justwatch-config.json
+config/*.local.json
+*.local.json
+.env
+.env.*
+!.env.example
+
+# ---- Deployed runtime / release output ----
+app/
+artifacts/
+publish/
+dist/
+*.zip
+
+# ---- .NET build output ----
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]64/
+[Bb]uild/
+bld/
+[Ll]og/
+[Ll]ogs/
+TestResults/
+[Tt]est[Rr]esult*/
+*.nupkg
+*.snupkg
+[Pp]ackages/
+project.lock.json
+project.fragment.lock.json
+*.binlog
+
+# ---- IDEs and editors ----
+.vs/
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.user
+*.suo
+*.userprefs
+*.userosscache
+*.sln.docstates
+*.DotSettings.user
+*.swp
+*~
+
+# ---- Node / Bun ----
+node_modules/
+bun.lockb
+npm-debug.log*
+
+# ---- Recordings, logs, caches ----
+*.log
+*.cache
+*.tmp
+*.mp4
+*.webm
+recordings/
+
+# ---- OS junk ----
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# ---- Agent tooling (per-machine) ----
+.claude/settings.local.json
+.claude/scheduled_tasks.lock

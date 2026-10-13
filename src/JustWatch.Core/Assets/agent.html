@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JustWatch — Agent</title>
+    <style>/* AGENT_STYLES */</style>
+</head>
+<body class="ws-page agent-page">
+<div class="ws-shell"><!-- WORKSPACE_NAV -->
+<main class="ws-main" id="workspace-main" tabindex="-1">
+<div class="ws-topbar"><div class="ws-breadcrumb">Workspace <span>/</span><span id="view-breadcrumb">Agent workspace</span></div><span id="conn" class="ws-connection"><span class="dot"></span><span class="txt">Connecting…</span></span></div>
+<div class="ws-content ws-agent-content">
+<header class="ws-intro"><div><div class="ws-eyebrow" id="view-eyebrow">BUILD WITH YOUR AGENTS</div><h1 id="view-title">Agent workspace</h1><p id="view-description">Plan, build, and test. Follow each agent’s progress in one place.</p></div><span class="ws-page-tag" id="view-tag">Live activity</span></header>
+<div id="content">
+    <div id="agent-panel" class="view-panel">
+        <div id="agent-columns">
+            <div class="agent-col col-orch" id="col-orch">
+                <div class="agent-header">
+                    <span class="label"><span class="dot" style="background:#4285f4"></span>Orchestrator</span>
+                    <button class="stop-btn" onclick="stopAgent('orch')" disabled>Stop All</button>
+                </div>
+                <div id="task-list"></div>
+                <div class="agent-messages" id="msgs-orch">
+                    <div class="agent-empty">Coordinates tasks, builds, tests, and recordings</div>
+                </div>
+            </div>
+            <div class="agent-col col-opus" id="col-opus">
+                <div class="agent-header">
+                    <span class="label"><span class="dot" style="background:#d670d6"></span>Opus Agent<span class="model-tag">claude-opus</span></span>
+                    <button class="stop-btn" onclick="stopAgent('opus')" disabled>Stop</button>
+                </div>
+                <div class="agent-messages" id="msgs-opus">
+                    <div class="agent-empty">Executes complex tasks and test automation</div>
+                </div>
+            </div>
+            <div class="agent-col col-sonnet" id="col-sonnet">
+                <div class="agent-header">
+                    <span class="label"><span class="dot" style="background:#0dbc79"></span>Sonnet Agent<span class="model-tag">claude-sonnet</span></span>
+                    <button class="stop-btn" onclick="stopAgent('sonnet')" disabled>Stop</button>
+                </div>
+                <div class="agent-messages" id="msgs-sonnet">
+                    <div class="agent-empty">Handles test planning and orchestration decisions</div>
+                </div>
+            </div>
+        </div>
+        <div id="user-convo">
+            <div id="convo-header"><span><span class="dot"></span>Conversation</span></div>
+            <div id="convo-messages">
+                <div class="convo-msg convo-placeholder">Your conversation will appear here.</div>
+            </div>
+        </div>
+        <div id="agent-input-area">
+            <textarea id="agent-input" aria-label="Message your agents" placeholder="Describe what you’d like to build, fix, or test…" rows="1"></textarea>
+            <button id="agent-send">Send request <span aria-hidden="true">↗</span></button>
+        </div>
+    </div>
+
+    <div id="emulator-panel" class="view-panel hidden">
+        <div class="emu-toolbar">
+            <span class="emu-title">MuMu instances</span>
+            <button class="emu-btn secondary" onclick="loadEmulators()">Refresh</button>
+            <button class="emu-btn" onclick="emuStartAll()">Start All Emulators</button>
+            <button class="emu-btn secondary" onclick="emuRestartAll()">Restart Running</button>
+            <button class="emu-btn secondary" onclick="emuScorchedUpdate()" title="Start managed emulators and install the latest app">Install latest app</button>
+            <button class="emu-btn secondary" onclick="emuClone()">Clone core</button>
+            <span id="emu-status" role="status" aria-live="polite"></span>
+            <span class="emu-host" id="emu-host"></span>
+        </div>
+        <div class="emu-overview"><div><span>MANAGED INSTANCES</span><strong id="emu-total">—</strong></div><div><span>RUNNING NOW</span><strong id="emu-running">—</strong></div><div><span>STOPPED</span><strong id="emu-stopped">—</strong></div></div>
+<div id="emu-error" class="emu-error" style="display:none"></div>
+        <div id="emu-grid" class="emu-grid">
+            <div class="emu-empty">Loading emulators…</div>
+        </div>
+    </div>
+
+    <div id="commands-panel" class="view-panel hidden">
+        <div class="cmd-toolbar">
+            <label class="ws-search"><span aria-hidden="true">⌕</span><input id="command-search" type="search" placeholder="Search commands or packages…" aria-label="Search commands"></label>
+            <button class="emu-btn secondary" onclick="loadCommands(true)">Refresh</button>
+            <span id="command-count" class="ws-count"></span><span id="cmd-status" class="cmd-status" role="status"></span>
+        </div>
+        <div id="cmd-list" class="cmd-list">
+            <div class="cmd-empty">Loading commands…</div>
+        </div>
+    </div>
+    </div>
+    </div></main></div>
+<div id="toast-container"></div>
+
+    <script>/* AGENT_SCRIPT */</script>
+</body>
+</html>

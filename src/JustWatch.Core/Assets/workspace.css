@@ -1,0 +1,273 @@
+/* Shared design system. Loaded after each page's component styles. */
+:root {
+  color-scheme: dark;
+  --bg: #101318; --panel: #191e26; --rail: #161b22; --soft: #232b37;
+  --line: #2c3542; --text: #e9edf5; --muted: #9aa8bb;
+  --accent: #b8ceff; --accent-hover: #d0deff; --selected: #29374e;
+  --green: #91d3af; --danger: #f0a1ab; --shadow: 0 4px 18px #0000000a;
+  --sidebar-width: 228px;
+}
+.ws-page { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.5 "Segoe UI Variable", "Segoe UI", system-ui, sans-serif; }
+.ws-page * { box-sizing: border-box; }
+.ws-page a { text-decoration: none; }
+.ws-page h1, .ws-page h2, .ws-page p { margin: 0; }
+.ws-page button, .ws-page input, .ws-page select, .ws-page textarea { font-family: inherit; }
+.ws-page button, .ws-page a, .ws-page select { touch-action: manipulation; transition: background .14s ease, border-color .14s ease; }
+.ws-page button { cursor: pointer; }
+.ws-page button:disabled { opacity: .42; cursor: default; }
+.ws-page :is(button,a,input,select,textarea,summary):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.ws-page input::placeholder, .ws-page textarea::placeholder { color: #8391a5; }
+.ws-page :where(input:not([type=checkbox]):not([type=color]), select, textarea) { background: #121820; color: var(--text); border: 1px solid #384456; border-radius: 8px; padding: 9px 11px; font-size: 13px; min-width: 0; }
+.ws-page input[type=checkbox] { accent-color: var(--accent); }
+.ws-page option { background: var(--panel); color: var(--text); }
+.ws-page svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.ws-shell { display: grid; grid-template-columns: var(--sidebar-width) minmax(0,1fr); min-height: 100dvh; }
+.ws-sidebar { position: sticky; top: 0; height: 100dvh; padding: 28px 14px 20px; display: flex; flex-direction: column; background: var(--rail); border-right: 1px solid var(--line); }
+.ws-brand { display: flex; align-items: center; gap: 11px; color: var(--text); margin: 0 12px 44px; font-size: 17px; font-weight: 650; letter-spacing: -.3px; }
+.ws-brand small { display: block; font-size: 10px; color: var(--muted); font-weight: 400; letter-spacing: .1px; margin-top: 2px; }
+.ws-brand-mark { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; background: linear-gradient(145deg,#34425b,#232e42); color: #cfddff; border: 1px solid #475975; box-shadow: inset 0 1px #ffffff0a; }
+.ws-nav-label { margin: 0 14px 12px; color: #77879d; font-size: 10px; font-weight: 600; letter-spacing: 1.4px; }
+.ws-nav { display: flex; flex-direction: column; gap: 5px; }
+.ws-nav .ws-nav-link { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 9px; color: #a8b5c8; font-size: 13px; font-weight: 450; white-space: nowrap; }
+.ws-nav-link svg { width: 17px; height: 17px; flex: none; }
+.ws-mobile-name { display: none; }
+.ws-nav .ws-nav-link:hover { color: var(--text); background: #202936; }
+.ws-nav .ws-nav-link[aria-current=page] { color: #dce7ff; background: var(--selected); font-weight: 600; box-shadow: inset 0 0 0 1px #c6dcff08; }
+.ws-nav-link[aria-current=page] svg { color: var(--accent); }
+.ws-sidebar-note { margin-top: auto; padding: 18px 14px 0; display: flex; align-items: center; gap: 8px; color: #8191a6; font-size: 10px; }
+.ws-local-dot, .ws-connection .dot, .ws-connection .health-dot, .ws-connection .live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #91d3af; flex: none; }
+.ws-skip { position: fixed; top: -60px; left: 240px; z-index: 2000; background: var(--accent); color: #152542; padding: 10px 16px; border-radius: 8px; }
+.ws-skip:focus { top: 12px; }
+.ws-main { margin: 0; padding: 0; max-width: none; width: 100%; min-width: 0; }
+.ws-topbar { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--line); padding: 0 36px; }
+.ws-breadcrumb { color: #cbd5e5; font-size: 12px; display: flex; gap: 13px; align-items: center; }
+.ws-breadcrumb > span:first-child { color: #58667c; }
+.ws-connection, #conn.ws-connection { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; white-space: nowrap; }
+.ws-content { width: 100%; max-width: 1500px; margin: 0 auto; padding: 32px 36px; }
+.ws-intro { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 30px; }
+.ws-eyebrow { color: #8395ae; font-size: 10px; font-weight: 650; letter-spacing: 1.4px; margin-bottom: 7px; }
+.ws-intro h1 { font-size: 30px; font-weight: 650; letter-spacing: -.8px; line-height: 1.25; margin: 0; color: var(--text); }
+.ws-intro p, .ws-intro .subtitle { font-size: 13px; line-height: 1.6; color: var(--muted); margin-top: 9px; max-width: 650px; }
+.ws-page-tag { border: 1px solid var(--line); border-radius: 20px; padding: 6px 11px; color: var(--muted); font-size: 11px; white-space: nowrap; }
+.ws-page :is(.btn,.emu-btn,.stop-btn,.actions button,.open-link) { border: 1px solid #39465a; border-radius: 8px; padding: 8px 12px; background: #242e3d; color: #d1dded; font-size: 12px; font-weight: 550; min-height: 34px; box-shadow: none; }
+.ws-page :is(.btn,.emu-btn,.stop-btn,.actions button,.open-link):hover:not(:disabled) { background: #303e52; border-color: #50627e; }
+.ws-page :is(.primary,.btn.primary,.emu-btn:not(.secondary):not(.danger),#agent-send) { background: var(--accent); border: 1px solid var(--accent); color: #152542; }
+.ws-page :is(.primary,.btn.primary,.emu-btn:not(.secondary):not(.danger),#agent-send):hover:not(:disabled) { background: var(--accent-hover); }
+.ws-page :is(.danger,.btn.danger,.emu-btn.danger) { background: #38252d; color: var(--danger); border-color: #69404c; }
+.ws-page :is(.danger,.btn.danger,.emu-btn.danger):hover:not(:disabled) { background: #4a2c36; border-color: #986071; }
+.ws-page :is(.muted,.subtitle,.field-help,.folder-path,.page-footer,.project-dir,.cmd-package-dir,.cmd-package-desc,.emu-note,.emu-field label,.emu-stat .lbl) { color: var(--muted); }
+.ws-page dialog { background: var(--panel); color: var(--text); border: 1px solid #40506a; border-radius: 16px; box-shadow: 0 24px 100px #0007; max-height: calc(100dvh - 40px); }
+.ws-page dialog::backdrop { background: #070c14b8; backdrop-filter: blur(5px); }
+.ws-page dialog h2 { font-size: 21px; font-weight: 600; letter-spacing: -.4px; }
+.ws-page :is(.logs,#logs) { background: #10151d; color: #ced9e9; font: 12px/1.8 Consolas,monospace; }
+.ws-page .notice { background: #352f22; border-color: #695638; color: #e1c58d; }
+.ws-page #toast, .ws-page #toast-container { position: fixed; left: auto; right: 24px; top: 22px; bottom: auto; transform: none; z-index: 1000; }
+.ws-page .toast { background: #243145; color: var(--text); border: 1px solid #4b6485; border-radius: 10px; box-shadow: 0 10px 40px #0004; font-size: 12px; padding: 12px 16px; }
+.ws-page #toast-container .toast { position: relative; transform: none; max-width: 340px; }
+.ws-page .toast .toast-msg { color: #becbe0; }
+
+/* Applications: library controls belong to the page, not the shared navigation. */
+.library-filters { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
+.ws-segments { display: inline-flex; gap: 3px; background: #171e28; border: 1px solid var(--line); padding: 4px; border-radius: 10px; }
+.ws-segments .nav-item { width: auto; margin: 0; padding: 8px 12px; min-height: 32px; gap: 9px; color: var(--muted); font-size: 12px; }
+.ws-segments .nav-item.active { background: #2b3a51; color: #dce7ff; }
+.ws-segments .nav-count { margin-left: 5px; color: inherit; opacity: .75; }
+.folder-filters { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 22px; }
+.folder-filters .nav-item { width: auto; max-width: 240px; min-height: 30px; padding: 5px 9px; border: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+.folder-filters .nav-item.active { background: var(--selected); color: var(--accent); border-color: #496083; }
+.folder-filters .nav-count { margin-left: 8px; }
+.projects-page .search { flex: 1; width: auto; height: 40px; background: #151c25; border-color: #384456; }
+.projects-page .search input { border: 0; padding: 7px 0; background: transparent; }
+.projects-page .sort { margin-left: 0; max-width: 170px; }
+.projects-page .segmented { background: #1d2633; border: 1px solid var(--line); }
+.projects-page .segmented button.active { background: #374964; color: #dce7ff; }
+.projects-page .collection-heading { color: #bac7da; }
+.projects-page .collection-note { color: #8294ad; }
+.projects-page .project-card { padding: 22px 20px 16px; border-radius: 12px; background: var(--panel); border-color: var(--line); }
+.projects-page .project-card:hover { border-color: #4c607d; }
+.projects-page .project-card h2 { font-size: 15px; color: var(--text); }
+.projects-page .app-icon:not(.has-icon) { background: linear-gradient(140deg,#34435b,#263144); color: #c0d4f3; }
+.projects-page .project-dir { margin: 18px 0; font-size: 11px; }
+.projects-page .card-meta { font-size: 11px; }
+.projects-page .card-footer { padding-top: 13px; gap: 6px; }
+.projects-page .script-picker { max-width: 115px; }
+.projects-page .script-picker select { padding: 5px 2px; border: none; background: transparent; font-size: 11px; }
+.projects-page .start-button, .projects-page .launch-menu > summary { background: var(--accent); color: #152542; border-color: #9ab9f4; height: 31px; }
+.projects-page .start-button:hover:not(:disabled), .projects-page .launch-menu > summary:hover { background: var(--accent-hover); }
+.projects-page .start-button.stop { background: #28364a; color: #d1dded; border-color: #435673; }
+.projects-page .launch-options button:hover { color: #152542; }
+.projects-page .list-view .project-card { border-radius: 0; }
+.projects-page .list-view .project-card:first-child { border-radius: 12px 12px 0 0; }
+.projects-page .list-view .project-card:last-child { border-radius: 0 0 12px 12px; }
+.projects-page .dialog-body > p { margin-bottom: 22px; }
+.projects-page .saved-folder { border-color: var(--line); }
+
+/* Services retain their compact preference rows and persistent save controls. */
+.services-page .ws-content { padding-bottom: 116px; }
+.services-page .overview { background: var(--panel); border-color: var(--line); }
+.services-page .card { background: var(--panel); border-color: var(--line); }
+.services-page .preferences { background: #151b24; border-color: var(--line); }
+.services-page .preferences select { padding: 5px 8px; font-size: 11px; }
+.services-page .preferences .more button { background: transparent; border: none; }
+.services-page .search-label { background: #151c25; }
+.services-page .search-label input { border: 0; background: transparent; }
+.services-page .save-bar { left: var(--sidebar-width); background: #1b2533f5; border-color: #3b4b63; }
+.services-page .save-bar.unsaved { border-color: #94b7f2; }
+.services-page .save-bar .actions { flex-shrink: 0; }
+.services-page .save-bar button { white-space: nowrap; }
+.services-page .page-footer { margin-top: 28px; }
+
+/* Agent, emulator and command views share the same page frame. */
+body.agent-page { display: block; height: 100dvh; }
+.agent-page .ws-shell { height: 100dvh; min-height: 0; }
+.agent-page .ws-main { display: flex; flex-direction: column; min-height: 0; }
+.agent-page .ws-topbar { flex: none; }
+.agent-page .ws-agent-content { flex: 1; min-height: 0; display: flex; flex-direction: column; padding-bottom: 24px; }
+.agent-page .ws-intro { flex: none; }
+.agent-page #content { min-height: 0; overflow: hidden; flex: 1; }
+.agent-page .view-panel { background: transparent; }
+.agent-page #agent-columns { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); flex: 1; min-height: 180px; gap: 14px; background: transparent; padding: 0; }
+.agent-page .agent-col { min-width: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); overflow: hidden; }
+.agent-page .agent-header { padding: 14px; min-height: 62px; background: #202b3b; border-bottom: 1px solid var(--line); gap: 6px; }
+.agent-page .col-opus .agent-header { background: #2b283b; }
+.agent-page .col-sonnet .agent-header { background: #20332f; }
+.agent-page .agent-header .label { flex-wrap: wrap; font-size: 13px; }
+.agent-page .agent-header .model-tag { width: 100%; margin-left: 14px; color: #9eadc4; font-size: 10px; }
+.agent-page .stop-btn { padding: 5px 9px; min-height: 29px; font-size: 11px; }
+.agent-page .agent-messages { padding: 16px; font-size: 12px; line-height: 1.75; }
+.agent-page .agent-empty { color: #93a4bd; font: 13px/1.8 "Segoe UI",sans-serif; text-align: center; padding: 30px 14px; max-width: 280px; margin: 0 auto; }
+.agent-page #task-list { background: #131c28; border-color: var(--line); }
+.agent-page .task-row { padding: 8px 12px; border-color: var(--line); }
+.agent-page #user-convo { margin: 16px 0 0; border: 1px solid var(--line); border-radius: 11px; background: var(--panel); max-height: 150px; min-height: 86px; }
+.agent-page #convo-header { background: #202b3b; padding: 9px 14px; font-size: 11px; }
+.agent-page #convo-messages { padding: 10px 14px; }
+.agent-page .convo-placeholder { color: #91a2bb; font-size: 12px; }
+.agent-page .convo-msg { border-color: var(--line); }
+.agent-page #agent-input-area { margin-top: 12px; background: #192331; border: 1px solid #3b4c65; border-radius: 11px; padding: 10px; align-items: flex-end; }
+.agent-page #agent-input { background: transparent; border: 0; color: var(--text); min-height: 40px; padding: 9px; }
+.agent-page #agent-input::placeholder { color: #93a3bb; }
+.agent-page #agent-send { padding: 10px 15px; border-radius: 8px; font-size: 12px; min-height: 40px; white-space: nowrap; }
+.agent-page #agent-send span { margin-left: 8px; }
+.agent-page .emu-toolbar, .agent-page .cmd-toolbar { background: transparent; border: 0; padding: 0 0 20px; position: static; gap: 8px; }
+.agent-page .emu-title { display: none; }
+.agent-page .emu-host { width: 100%; margin: 9px 0 0; color: var(--muted); font-size: 12px; }
+.agent-page .emu-host b { color: #dce7fa; }
+.agent-page .emu-overview { display: grid; grid-template-columns: repeat(3,1fr); background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+.emu-overview > div { padding: 0 22px; border-right: 1px solid var(--line); }
+.emu-overview > div:last-child { border: 0; }
+.emu-overview span { display: block; color: #91a2bb; font-size: 10px; letter-spacing: .8px; }
+.emu-overview strong { display: block; font-size: 25px; font-weight: 600; margin-top: 5px; }
+.agent-page .emu-grid { padding: 0 0 8px; gap: 18px; grid-template-columns: repeat(auto-fill,minmax(330px,1fr)); }
+.agent-page .emu-card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; gap: 18px; }
+.agent-page .emu-card.running { border-color: #375e50; }
+.agent-page .emu-card-head { flex-wrap: wrap; }
+.agent-page .emu-name { font-size: 16px; }
+.agent-page .emu-state { color: var(--muted); font-size: 10px; }
+.agent-page .emu-dot.on { background: var(--green); box-shadow: none; }
+.agent-page .emu-badge { border-radius: 5px; padding: 3px 7px; background: #303d52; color: #b7c9e6; }
+.agent-page .emu-badge.core { color: #edcf91; background: #403726; }
+.agent-page .emu-stats { gap: 12px; }
+.agent-page .emu-stat .val { font-size: 17px; color: #dce7fa; }
+.agent-page .emu-stat .lbl { font-size: 9px; letter-spacing: .6px; }
+.agent-page .emu-mem-bar { background: #111822; border: 0; height: 8px; }
+.agent-page .emu-mem-legend { color: var(--muted); gap: 10px; line-height: 1.8; }
+.agent-page .emu-note { font-size: 11px; line-height: 1.7; }
+.agent-page .emu-tuning { margin: 0; padding-top: 14px; border-top: 1px solid var(--line); }
+.agent-page .emu-tuning summary { color: #b5c9e6; font-size: 12px; cursor: pointer; margin-bottom: 0; }
+.agent-page .emu-tuning[open] summary { margin-bottom: 14px; }
+.agent-page .emu-tune { gap: 12px; }
+.agent-page .emu-tuning .emu-actions { margin: 14px 0 8px; }
+.agent-page .emu-field label { text-transform: none; font-size: 11px; margin-bottom: 4px; }
+.agent-page .emu-error { background: #38252d; color: #f0abb5; border: 1px solid #693f4d; margin: 0 0 20px; padding: 12px 16px; }
+.agent-page .ws-search { display: flex; align-items: center; gap: 10px; flex: 1; background: #151c25; border: 1px solid #384456; border-radius: 9px; padding-left: 13px; }
+.ws-search > span { color: #aabedb; font-size: 23px; }
+.agent-page .ws-search input { border: 0; background: transparent; width: 100%; padding: 11px; }
+.ws-count { color: var(--muted); font-size: 11px; }
+.agent-page .cmd-list { padding: 0 0 8px; gap: 16px; }
+.agent-page .cmd-root-title { color: #91a5c3; font-size: 11px; letter-spacing: 1px; padding: 6px 0; margin: 0; }
+.agent-page .cmd-package { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+.agent-page .cmd-package-head { justify-content: space-between; flex-wrap: wrap; gap: 6px 16px; }
+.agent-page .cmd-package-name { color: var(--text); font-size: 16px; }
+.agent-page .cmd-package-dir { font-size: 11px; overflow-wrap: anywhere; }
+.agent-page .cmd-package-desc { font-size: 12px; line-height: 1.7; margin-top: 6px; }
+.agent-page .cmd-scripts { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 8px; margin-top: 16px; }
+.agent-page .cmd-btn { display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left; border: 1px solid #334057; border-radius: 8px; padding: 12px 14px; background: #202938; min-width: 0; }
+.agent-page .cmd-btn:hover { background: #2c3c54; border-color: #57749d; }
+.cmd-identity { min-width: 0; }
+.cmd-script-name { display: block; font-size: 12px; color: #d5e4fc; font-weight: 600; }
+.cmd-script-detail { display: block; font-size: 10px; color: #9cb0cd; margin-top: 4px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.cmd-run { color: #b8ceff; font-size: 11px; white-space: nowrap; }
+.agent-page .cmd-empty, .agent-page .emu-empty { border: 1px dashed #3c4c64; border-radius: 12px; color: var(--muted); padding: 48px 24px; grid-column: 1/-1; }
+
+@media (max-width: 1150px) {
+  .ws-topbar { padding: 0 24px; }
+  .ws-content { padding: 28px 24px; }
+  .agent-page #agent-columns { gap: 10px; }
+  .agent-page .agent-header { padding: 10px; flex-wrap: wrap; }
+  .agent-page .agent-messages { padding: 12px; }
+  .agent-page .emu-grid { grid-template-columns: repeat(auto-fill,minmax(285px,1fr)); }
+}
+@media (max-width: 760px) {
+  .ws-shell { display: flex; flex-direction: column; }
+  .ws-sidebar { position: relative; top: auto; height: auto; padding: 16px 16px 10px; border-right: 0; border-bottom: 1px solid var(--line); flex: none; }
+  .ws-brand { margin: 0 4px 14px; font-size: 15px; }
+  .ws-brand-mark { height: 29px; width: 29px; border-radius: 9px; }
+  .ws-brand small { display: none; }
+  .ws-nav-label, .ws-sidebar-note { display: none; }
+  .ws-nav { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 3px; }
+  .ws-nav .ws-nav-link { padding: 9px 2px; gap: 6px; font-size: 10px; flex-direction: column; }
+  .ws-nav-link svg { height: 17px; width: 17px; }
+  .ws-nav-link .ws-link-label { display: none; }
+  .ws-mobile-name { display: block; }
+  .ws-topbar { height: 46px; padding: 0 18px; gap: 12px; }
+  .ws-breadcrumb, .ws-connection, #conn.ws-connection { font-size: 10px; }
+  .ws-breadcrumb { gap: 8px; }
+  .ws-content { padding: 24px 18px; }
+  .ws-intro { gap: 14px; align-items: flex-start; margin-bottom: 24px; }
+  .ws-intro h1 { font-size: 25px; }
+  .ws-intro p, .ws-intro .subtitle { font-size: 12px; }
+  .ws-eyebrow { font-size: 9px; }
+  .ws-intro > button { white-space: nowrap; font-size: 11px; padding: 8px 10px; margin-top: 18px; }
+  .ws-page-tag { display: none; }
+  .ws-skip { left: 16px; }
+  .library-filters { flex-wrap: wrap; }
+  .ws-segments .nav-item { padding: 7px 10px; font-size: 11px; }
+  .folder-filters { flex-wrap: nowrap; overflow-x: auto; margin-bottom: 18px; }
+  .folder-filters .nav-item { flex: none; }
+  .projects-page .grid { grid-template-columns: repeat(auto-fill,minmax(270px,1fr)); }
+  .projects-page .controls { gap: 10px; }
+  .projects-page .search { flex-basis: 100%; }
+  .projects-page .sort { max-width: 180px; }
+  .projects-page .collection-note { display: none; }
+  .services-page .save-bar { left: 0; padding: 12px 18px; }
+  .services-page .ws-content { padding-bottom: 130px; }
+  body.agent-page { height: auto; overflow: auto; }
+  .agent-page .ws-shell { height: auto; min-height: 100dvh; }
+  .agent-page .ws-agent-content { min-height: 600px; }
+  .agent-page #content { position: static; overflow: visible; }
+  .agent-page .view-panel { position: static; }
+  .agent-page #agent-columns { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; flex: none; min-height: 0; }
+  .agent-page .agent-col { min-width: min(320px,calc(100vw - 54px)); flex: 1 0 min(320px,calc(100vw - 54px)); height: 300px; scroll-snap-align: start; }
+  .agent-page .agent-header { flex-wrap: nowrap; }
+  .agent-page #user-convo { max-height: 180px; }
+  .agent-page #agent-input-area { flex-wrap: wrap; }
+  .agent-page #agent-input { flex-basis: 100%; }
+  .agent-page #agent-send { margin-left: auto; }
+  .agent-page .emu-grid { grid-template-columns: minmax(0,1fr); }
+  .agent-page .emu-overview { padding: 16px 4px; }
+  .emu-overview > div { padding: 0 12px; }
+  .emu-overview span { font-size: 8px; letter-spacing: .3px; }
+  .emu-overview strong { font-size: 21px; }
+  .agent-page .emu-toolbar .emu-btn { font-size: 11px; }
+  .agent-page .cmd-toolbar .ws-search { flex-basis: 100%; }
+  .agent-page .cmd-scripts { grid-template-columns: minmax(0,1fr); }
+  .agent-page .cmd-package { padding: 16px; }
+  .ws-page #toast, .ws-page #toast-container { top: 12px; right: 12px; max-width: calc(100vw - 24px); }
+}
+@media (max-width: 360px) { .projects-page .grid { grid-template-columns: minmax(0,1fr); } .ws-content { padding-inline: 14px; } }
+@media (prefers-reduced-motion: reduce) { .ws-page *, .ws-page *::before, .ws-page *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+.agent-page .emu-field label { display: flex; flex-direction: column; gap: 5px; }
+
+/* The vector mark supplies its own background and rounded corners. */
+img.ws-brand-mark { display: block; background: transparent; border: 0; box-shadow: none; }

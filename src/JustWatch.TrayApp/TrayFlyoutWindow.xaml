@@ -1,0 +1,240 @@
+<Window x:Class="JustWatch.TrayApp.TrayFlyoutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="JustWatch"
+        Width="432"
+        MaxHeight="712"
+        SizeToContent="Height"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Topmost="True"
+        ShowActivated="True"
+        FontFamily="{StaticResource UiFont}"
+        FontSize="12.5"
+        Foreground="#F4F4F5"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display"
+        Deactivated="OnDeactivated"
+        KeyDown="OnKeyDown">
+    <Window.Resources>
+        <SolidColorBrush x:Key="AccentBrush" Color="#A5B4FC" />
+
+        <!-- Slimmer, quieter version of the shared scrollbar. -->
+        <Style TargetType="ScrollBar" BasedOn="{StaticResource {x:Type ScrollBar}}">
+            <Setter Property="Width" Value="8" />
+            <Setter Property="Opacity" Value="0.5" />
+        </Style>
+    </Window.Resources>
+
+    <!-- The 16px margin is room for the shadow; PositionNearTaskbar compensates for it. -->
+    <Grid x:Name="Shell" Margin="16">
+        <Grid.RenderTransform>
+            <TranslateTransform x:Name="ShellOffset" />
+        </Grid.RenderTransform>
+
+        <Border Background="{StaticResource FlyoutBackgroundBrush}" CornerRadius="14">
+            <Border.Effect>
+                <DropShadowEffect Color="Black"
+                                  Opacity="0.55"
+                                  BlurRadius="22"
+                                  Direction="270"
+                                  ShadowDepth="5" />
+            </Border.Effect>
+        </Border>
+
+        <Border Background="{StaticResource FlyoutBackgroundBrush}"
+                BorderBrush="{StaticResource HairlineBrush}"
+                BorderThickness="1"
+                CornerRadius="14">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="16,15,16,13">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Assets/justwatch.png"
+                           Width="30"
+                           Height="30"
+                           Margin="0,0,11,0"
+                           VerticalAlignment="Center"
+                           RenderOptions.BitmapScalingMode="HighQuality">
+                        <Image.Clip>
+                            <RectangleGeometry Rect="0,0,30,30" RadiusX="8" RadiusY="8" />
+                        </Image.Clip>
+                    </Image>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="JustWatch"
+                                   FontSize="14"
+                                   FontWeight="SemiBold" />
+                        <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                            <Ellipse x:Name="SummaryDot"
+                                     Width="7"
+                                     Height="7"
+                                     Margin="0,1,6,0"
+                                     VerticalAlignment="Center" />
+                            <TextBlock x:Name="SummaryText"
+                                       Foreground="{StaticResource SecondaryTextBrush}"
+                                       FontSize="11.5" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <Button x:Name="UpdatePillButton"
+                                Visibility="Collapsed"
+                                Padding="10,4"
+                                Margin="0,0,4,0"
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                ToolTip="A new JustWatch version is ready to install" />
+                        <Button x:Name="AboutButton"
+                                Content="&#xE946;"
+                                Style="{StaticResource IconButtonStyle}"
+                                ToolTip="About JustWatch" />
+                    </StackPanel>
+                </Grid>
+
+                <ScrollViewer Grid.Row="1"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Margin="12,0,12,12">
+                        <Border Height="1"
+                                Margin="4,0,4,10"
+                                Background="{StaticResource HairlineBrush}" />
+
+                        <Grid Margin="4,0,0,0">
+                            <TextBlock Text="Services"
+                                       Style="{StaticResource SectionTitleTextStyle}"
+                                       VerticalAlignment="Center" />
+                            <StackPanel HorizontalAlignment="Right"
+                                        Orientation="Horizontal">
+                                <Button x:Name="StartAllProcessesButton"
+                                        Content="Start all"
+                                        Style="{StaticResource TextButtonStyle}" />
+                                <Button x:Name="StopAllProcessesButton"
+                                        Content="Stop all"
+                                        Style="{StaticResource TextButtonStyle}" />
+                                <Button x:Name="RestartAllProcessesButton"
+                                        Content="Restart all"
+                                        Style="{StaticResource TextButtonStyle}" />
+                            </StackPanel>
+                        </Grid>
+                        <StackPanel x:Name="DevServerRowsPanel" />
+
+                        <StackPanel x:Name="OtherSection" Margin="0,16,0,0">
+                            <Grid Margin="4,0,0,6">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="Other"
+                                               Style="{StaticResource SectionTitleTextStyle}" />
+                                    <TextBlock x:Name="OtherBusyText"
+                                               Text="Scanning…"
+                                               Visibility="Collapsed"
+                                               Foreground="{StaticResource TertiaryTextBrush}"
+                                               FontSize="11"
+                                               Margin="8,1,0,0" />
+                                </StackPanel>
+                                <Button x:Name="RefreshOtherButton"
+                                        HorizontalAlignment="Right"
+                                        Content="&#xE72C;"
+                                        Style="{StaticResource IconButtonStyle}"
+                                        ToolTip="Refresh other web services" />
+                            </Grid>
+                            <TextBlock x:Name="OtherStatusText"
+                                       Text="Looking for web services…"
+                                       Foreground="{StaticResource TertiaryTextBrush}"
+                                       FontSize="11"
+                                       Margin="4,0,4,6"
+                                       TextWrapping="Wrap" />
+                            <Border Style="{StaticResource CardStyle}">
+                                <StackPanel x:Name="OtherRowsPanel" />
+                            </Border>
+                        </StackPanel>
+
+                        <StackPanel x:Name="EmulatorSection" Margin="0,16,0,0">
+                            <Grid Margin="4,0,0,6">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center">
+                                    <TextBlock Text="MuMu emulators"
+                                               Style="{StaticResource SectionTitleTextStyle}"
+                                               VerticalAlignment="Center" />
+                                    <TextBlock x:Name="EmulatorBusyText"
+                                               Text="Syncing…"
+                                               Visibility="Collapsed"
+                                               Foreground="{StaticResource TertiaryTextBrush}"
+                                               FontSize="11"
+                                               Margin="8,1,0,0"
+                                               VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Right"
+                                            Orientation="Horizontal">
+                                    <Button x:Name="StartAllEmulatorsButton"
+                                            Content="Start all"
+                                            Style="{StaticResource TextButtonStyle}" />
+                                    <Button x:Name="EmulatorMoreButton"
+                                            Content="&#xE712;"
+                                            Style="{StaticResource IconButtonStyle}"
+                                            ToolTip="More emulator actions" />
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock x:Name="EmulatorWarningText"
+                                       Foreground="{StaticResource WarningTextBrush}"
+                                       FontSize="11.5"
+                                       LineHeight="17"
+                                       TextWrapping="Wrap"
+                                       Margin="4,0,4,8"
+                                       Visibility="Collapsed" />
+                            <Border Style="{StaticResource CardStyle}">
+                                <StackPanel x:Name="EmulatorRowsPanel" />
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <Border Grid.Row="2"
+                        Background="{StaticResource FooterBackgroundBrush}"
+                        BorderBrush="{StaticResource HairlineBrush}"
+                        BorderThickness="0,1,0,0"
+                        CornerRadius="0,0,13,13"
+                        Padding="12,10,10,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="ShowWindowButton"
+                                Content="Open window"
+                                Style="{StaticResource PrimaryButtonStyle}" />
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    Margin="6,0,0,0">
+                            <Button x:Name="OpenWebUiButton"
+                                    Content="Web UI"
+                                    Style="{StaticResource TextButtonStyle}" />
+                            <Button x:Name="ProjectLibraryButton"
+                                    Content="Projects"
+                                    Style="{StaticResource TextButtonStyle}" />
+                            <Button x:Name="ManageServicesButton"
+                                    Content="Settings &amp; tray"
+                                    Style="{StaticResource TextButtonStyle}" />
+                        </StackPanel>
+                        <Button x:Name="ExitButton"
+                                Grid.Column="2"
+                                Content="&#xE7E8;"
+                                Style="{StaticResource IconButtonStyle}"
+                                ToolTip="Quit JustWatch" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

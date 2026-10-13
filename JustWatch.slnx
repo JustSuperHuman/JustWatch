@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/JustWatch.Core/JustWatch.Core.csproj" />
+    <Project Path="src/JustWatch.TrayApp/JustWatch.TrayApp.csproj" />
+  </Folder>
+</Solution>

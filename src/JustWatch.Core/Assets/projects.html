@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark"><title>Applications · JustWatch</title>
+  <style>/* PROJECT_STYLES */</style>
+</head>
+<body class="ws-page projects-page">
+<div class="ws-shell"><!-- WORKSPACE_NAV -->
+<main class="ws-main" id="workspace-main" tabindex="-1">
+  <div class="ws-topbar"><div class="ws-breadcrumb">Workspace <span>/</span> Applications</div><div class="ws-connection"><span class="health-dot" id="healthDot"></span><span id="healthLabel">Connecting…</span></div></div>
+  <div class="ws-content content" id="content">
+    <header class="ws-intro"><div><div class="ws-eyebrow">YOUR LOCAL LIBRARY</div><h1 id="pageTitle">Applications</h1><p class="subtitle">Your projects, ready when you are. Find, launch, and manage your local apps.</p></div><button class="btn primary" id="addFolder"><span data-icon="plus"></span>Add folder</button></header>
+    <div class="library-filters"><div class="ws-segments" aria-label="Application filter"><button class="nav-item active" id="allProjects">All applications <span class="nav-count" id="allCount">0</span></button><button class="nav-item" id="runningProjects"><span data-icon="activity"></span>Running <span class="nav-count" id="runningCount">0</span></button></div><button class="btn" id="manageFolders"><span data-icon="folder"></span>Watch folders</button></div>
+    <div class="folder-filters" id="folders" aria-label="Filter by watch folder"></div><p class="folder-path" id="folderHint">Add a watch folder to discover your local web apps.</p>
+      <div class="notice" id="notice" role="alert" hidden></div>
+      <div class="controls">
+        <label class="search"><span data-icon="search"></span><input id="search" type="search" placeholder="Search applications" aria-label="Find a project"><span class="key-hint">/</span></label>
+        <select class="sort" id="sort" aria-label="Sort projects"><option value="name">Name</option><option value="framework">Framework</option><option value="running">Running first</option></select>
+        <div class="segmented" aria-label="Project layout"><button id="gridView" class="active" aria-label="Grid view" aria-pressed="true"><span data-icon="grid"></span></button><button id="listView" aria-label="List view" aria-pressed="false"><span data-icon="list"></span></button></div>
+      </div>
+      <div class="collection-heading"><span id="collectionLabel">All applications</span><span id="visibleCount">0</span><span class="collection-note">Discovered in your watch folders</span><button class="icon-button" id="rescan" aria-label="Rescan watch folders" title="Rescan watch folders"><span data-icon="refresh"></span></button></div>
+      <div class="grid" id="projects" aria-label="Projects"></div>
+      <footer class="page-footer"><span class="scan-state" id="scanState" role="status">Connecting…</span><span>Web services only<span class="footer-dot">·</span>Refreshes every 2 minutes</span></footer>
+    </div>
+  </main>
+</div>
+<dialog id="folderDialog" aria-labelledby="folderTitle">
+  <div class="dialog-header"><h2 id="folderTitle">Watch folders</h2><button class="icon-button" id="closeFolders" aria-label="Close watch folders"><span data-icon="close"></span></button></div>
+  <div class="dialog-body"><p>Add a folder or an entire drive. JustWatch finds web apps in its subfolders and keeps your library up to date.</p><form id="folderForm"><label class="field-label" for="folderPath">Folder path</label><input class="path-input" id="folderPath" required placeholder="F:\ or F:\Projects" autocomplete="off" spellcheck="false"><span class="field-help">Apps appear when a web server script is detected.</span><div class="form-error" id="folderError" role="alert"></div><div class="dialog-actions"><button class="btn primary" id="saveFolder" type="submit"><span data-icon="plus"></span>Add watch folder</button></div></form><div class="saved-folders" id="savedFolders"></div></div>
+</dialog>
+<dialog id="logDialog" class="log-dialog" aria-labelledby="logTitle"><div class="dialog-header"><h2 class="log-title" id="logTitle">Application logs</h2><button class="icon-button" id="closeLogs" aria-label="Close logs"><span data-icon="close"></span></button></div><p class="log-subtitle" id="logSubtitle"></p><pre class="logs" id="logs" tabindex="0"></pre></dialog>
+<dialog id="deleteDialog" aria-labelledby="deleteTitle">
+  <div class="dialog-header"><h2 id="deleteTitle">Delete project?</h2><button class="icon-button" id="closeDelete" aria-label="Cancel project deletion"><span data-icon="close"></span></button></div>
+  <div class="dialog-body"><div class="delete-symbol"><span data-icon="trash"></span></div><p>This permanently deletes the entire folder and everything inside it, including source files, dependencies, and nested projects. It cannot be undone.</p><div class="delete-path" id="deletePath"></div><p class="delete-impact" id="deleteImpact"></p><form id="deleteForm"><label class="field-label" for="deleteConfirmation">Type <strong id="deleteName"></strong> to confirm</label><input class="path-input" id="deleteConfirmation" autocomplete="off" spellcheck="false" required><div class="form-error" id="deleteError" role="alert"></div><div class="delete-progress" id="deleteProgress" role="status" hidden><span data-icon="refresh"></span>Stopping services and deleting files…</div><div class="dialog-actions"><button class="btn" type="button" id="cancelDelete">Cancel</button><button class="btn danger" id="confirmDelete" type="submit" disabled><span data-icon="trash"></span>Delete project</button></div></form></div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>/* PROJECT_SCRIPT */</script>
+</body>
+</html>

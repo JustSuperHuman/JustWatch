@@ -1,0 +1,12 @@
+name: justwatch-transcriber
+services:
+  transcriber:
+    build:
+      context: J:/justgains/JustGains-API/YoutubeTranscriberService
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_HTTP_PORTS: "8080"
+      API_URL: http://host.docker.internal:5000
+      JUST_DEBUG: "true"
+      EXTRACTION_FPS: "2"

@@ -1,0 +1,52 @@
+# JustWatch
+
+> JustWatch is a Windows tray app that keeps local dev servers running. It starts
+> them, restarts them when they crash, keeps their logs, and exposes everything
+> through an HTTP API at http://localhost:6767 so AI agents can manage services
+> on the user's behalf.
+
+## Start here (for AI agents)
+
+1. Check JustWatch is running: `GET http://localhost:6767/api` returns a JSON index
+   of every endpoint plus the running version.
+2. List services: `GET http://localhost:6767/api/services?scope=all`
+3. Act: `GET http://localhost:6767/api/services/{id}/start|stop|restart`, then
+   confirm the returned snapshot (`status`, `running`, `pid`).
+4. Debug: `GET http://localhost:6767/api/services/{id}/logs?lines=100`
+5. Add, edit or remove services: GET then PUT `/api/services/configuration`
+   (send back the `revision` you received). Ask the user before removing anything.
+
+GET works for every action. A body-less POST fails with 411 unless you send
+`Content-Length: 0`. In PowerShell use `Invoke-RestMethod` or `curl.exe`, not `curl`.
+
+## Install the skill
+
+A ready-made agent skill with the full API reference ships with JustWatch. Install it once
+and your agent loads it whenever the user mentions local services:
+
+```powershell
+# Claude Code
+$d = "$HOME\.claude\skills\justwatch"; New-Item -ItemType Directory -Force $d | Out-Null
+Invoke-WebRequest http://localhost:6767/skill -OutFile "$d\SKILL.md"
+
+# Codex / other agents that read ~/.agents/skills
+$d = "$HOME\.agents\skills\justwatch"; New-Item -ItemType Directory -Force $d | Out-Null
+Invoke-WebRequest http://localhost:6767/skill -OutFile "$d\SKILL.md"
+```
+
+Offline copy: `skills\justwatch\SKILL.md` next to `JustWatch.exe`, or
+https://raw.githubusercontent.com/JustSuperHuman/JustWatch/main/skills/justwatch/SKILL.md
+
+## If localhost:6767 doesn't answer
+
+JustWatch isn't running. Start it with
+`Start-Process "$env:LOCALAPPDATA\Programs\JustWatch\app\JustWatch.exe" -ArgumentList '--minimized'`
+or the Start Menu shortcut. If it isn't installed, ask the user, then run:
+`irm https://raw.githubusercontent.com/JustSuperHuman/JustWatch/main/install.ps1 | iex`
+
+## Where things live
+
+- Config: `%APPDATA%\JustWatch\justwatch-config.json` (prefer the API; manual edits need a restart)
+- App: `%LOCALAPPDATA%\Programs\JustWatch\app\`
+- Web UI: http://localhost:6767/services (settings), http://localhost:6767/projects (project library)
+- Source and releases: https://github.com/JustSuperHuman/JustWatch
