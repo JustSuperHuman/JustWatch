@@ -29,6 +29,8 @@
     <None Include="..\..\llms.txt" Link="llms.txt" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\llms.txt" Link="AGENTS.md" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\skills\justwatch\SKILL.md" Link="skills\justwatch\SKILL.md" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\LICENSE" Link="LICENSE.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Assets\Fonts\Inter-LICENSE.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>

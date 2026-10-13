@@ -13,6 +13,7 @@
   <a href="https://github.com/JustSuperHuman/JustWatch/releases/latest"><img src="https://img.shields.io/github/v/release/JustSuperHuman/JustWatch?label=download" alt="Latest release"></a>
   <img src="https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4" alt="Windows 10 and 11">
   <img src="https://img.shields.io/badge/.NET-10-512BD4" alt=".NET 10">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="GPL-3.0 license"></a>
 </p>
 
 <p align="center">
@@ -188,3 +189,13 @@ install.ps1             one-line installer
 config/                 example configuration
 docs/                   feature docs and screenshots
 ```
+
+## License
+
+JustWatch is free software under the [GNU General Public License v3.0](LICENSE).
+Use it, change it and share it for free. If you distribute a modified version,
+you must publish its source under the same license. Contributions back to this
+repository are welcome: open a pull request.
+
+Bundled third-party components keep their own licenses: xterm.js (MIT) and the
+Inter font (SIL Open Font License).
